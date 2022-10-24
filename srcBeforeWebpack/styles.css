@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Corben&family=Dosis:wght@600&family=Open+Sans:wght@500&family=Poppins&family=Roboto&display=swap');
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+ }
+ :root {
+    --color1: rgb(80,50,70);
+ }
+body {
+    background-color: rgb(64,64,64);
+    margin:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+@media (max-width: 800px) {
+body {
+    flex-direction: column;
+}
+}
+.container {
+    display: grid; 
+    grid-template-columns: repeat(8,calc(min(100vh, 100vw) / 8));
+    grid-template-rows: repeat(8, calc(min(100vh, 100vw) / 8));
+}
+.black {
+    background-color: rgb(80, 80, 80);
+}
+.white {
+    background-color: rgb(206, 206, 206);
+}
+.cell {
+    position:relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 2em;
+}
+.startPos {
+    cursor: url(assets/cur.png), auto;
+}
+.cellbg:hover {
+    background: url(assets/knight.png);
+    background-size: contain;
+}
+.knight {
+    background: url(assets/knight.png);
+    background-size: contain;
+    padding:5px;
+}
+.destination:hover {
+    background: url(assets/destination.png);
+    background-size: contain;
+}
+.destinationFinal {
+    background: url(assets/destination.png);
+    background-size: contain;
+}
+.leftPane {
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    width:100%;
+}
+.title {
+    font-size: 4em;
+    font-family: 'Anton', sans-serif;
+    color:var(--color1);
+    background-color: darkgray;
+    padding: 20px 50px;
+    margin-bottom: 50px;
+}
+.explanation {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 50px;
+    background-color: darkgray;
+    padding: 5px;
+}
+.buttons button {
+    margin: 15px;
+    font-size: 1.5em;
+    padding: 5px 10px;
+}
+.active:hover {
+    border: 2px solid var(--color1);
+    background-color: var(--color1);
+    color:white;
+}
+.inactive {
+    background-color: darkgray;
+    border: 2px solid darkgray;
+    color: rgb(99, 99, 99);
+}
+.inactive:hover {
+    background-color: darkgray;
+    border: 2px solid darkgray;
+    color: rgb(99, 99, 99);
+}
+.calculate {
+    transition: all 0.4s ease;
+}   
+.guide {
+    background-color: var(--color1);
+    min-height: 200px;
+    width:100%;
+    text-align: center;
+    padding: 15px;
+    color: white;
+    font-size: 1.25em;
+    margin: 20px 0;
+}
+/* ------- start hint effect -------- */
+@-webkit-keyframes hint{
+    to {
+      -webkit-transform: scale(1.2);
+      transform: scale(1.2);
+    }}
+@keyframes hint{
+to {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+}}
+.hint{
+-webkit-animation-name: hint;
+animation-name: hint;
+-webkit-animation-duration: 0.3s;
+animation-duration: 0.5s;
+-webkit-animation-timing-function: linear;
+animation-timing-function: linear;
+-webkit-animation-iteration-count: 4;
+animation-iteration-count: 4;
+-webkit-animation-direction: alternate;
+animation-direction: alternate;
+}
+/* ------- end hint effect -------- */
+.imgKnight {
+    position: absolute;
+    transition: all 0.3s ease-in-out;
+    z-index: 1;
+}
+.startPos {
+    border: 4px solid black;
+}
+.temp {
+    border: 4px solid rgb(0, 87, 128);
+}
+.tempLast {
+    border: 4px solid green;
+}
+.highlight {
+    background-color: cyan;
+}
+.target {
+    background-color: green;
+}

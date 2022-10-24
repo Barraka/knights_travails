@@ -1,17 +1,16 @@
-let board=[];
+
 function makeBoard(size=8) {
+    let board=[];
     for(let i=0; i<size; i++) {
         board.push([]);
         for(let j=0; j<size; j++)board[i].push('');
     }
+    return board;
 }
 
-
-let possibleMoves = [[1,2],[2,1],[2,-1],[1,-2],[-1,-2],[-2,-1],[-2,1],[-1,2]];
-
 function graphSolution(start, end) {
-    board=[];
-    makeBoard();
+    let board=makeBoard();
+    let possibleMoves = [[1,2],[2,1],[2,-1],[1,-2],[-1,-2],[-2,-1],[-2,1],[-1,2]];
     const boardLength=board.length;
     let knight = start;
     board[knight[0]][knight[1]]='v';
@@ -44,7 +43,6 @@ function graphSolution(start, end) {
                     }
                 }
             }
-
         }
         analyzePosition = [...tempPositions];
         tempPositions=[];
@@ -54,10 +52,8 @@ function graphSolution(start, end) {
         }
     }
 }
-//calculateMoves([0,0],[3,3]);
-//graphSolution([0,0],[3,3]);
+
 function displayBoard() {
-    let start='white';
     let container = document.querySelector('.container');
     container.innerHTML='';
     for(let i=7;i>=0;i--) {
@@ -66,12 +62,8 @@ function displayBoard() {
             cell.classList.add('cell');
             if((i%2===0 && j%2===0) || (i%2!==0 && j%2!==0)) {
                 cell.classList.add('white');
-                start='black';
             }
-            else {
-                cell.classList.add('black');
-                start='white';
-            }
+            else cell.classList.add('black');
             if(i===0 && j===0)cell.classList.add('start');
             cell.setAttribute('data-posX',`${i}`);
             cell.setAttribute('data-posY',`${j}`);
@@ -79,23 +71,12 @@ function displayBoard() {
         }
     }
 }
-displayBoard();
-
-let placeButton = document.querySelector('.placeButton');
-placeButton.addEventListener('click',startPos);
-let container = document.querySelector('.container');
-container.addEventListener('click',placeKnight);
-let calculate = document.querySelector('.calculate');
-calculate.addEventListener('click',runCalculate);
 
 function startPos() {
     //Remove existing content
     displayBoard();
-    // let imgKnight = document.querySelector('.imgKnight');
-    // if(imgKnight)imgKnight.remove();
     let cell = document.querySelectorAll('.cell');    
     cell.forEach(x=>{
-        // x.classList.remove('knight', 'destination', 'destinationFinal');
         x.classList.add('cellbg');
     });
     let guide = document.querySelector('.guide');
@@ -112,8 +93,7 @@ function placeKnight(e) {
             if(x!==target) {
                 x.classList.remove('cellbg')
                 x.classList.add('destination');
-            }
-            
+            }            
         });
     }
     else if(target.classList.contains('destination')) {
@@ -142,7 +122,6 @@ function runCalculate() {
     let finalX = parseInt(destinationFinal.getAttribute('data-posx'));
     let finalY = parseInt(destinationFinal.getAttribute('data-posy'));
     let solution = graphSolution([valX,valY],[finalX, finalY]);
-    console.log(solution);
     let imgKnight = document.createElement('img');
     imgKnight.classList.add('imgKnight');
     imgKnight.src=('assets/knight.png');
@@ -206,3 +185,11 @@ function runCalculate() {
         },time);
     }
 }
+
+let placeButton = document.querySelector('.placeButton');
+placeButton.addEventListener('click',startPos);
+let container = document.querySelector('.container');
+container.addEventListener('click',placeKnight);
+let calculate = document.querySelector('.calculate');
+calculate.addEventListener('click',runCalculate);
+displayBoard();

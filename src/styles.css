@@ -42,7 +42,7 @@ body {
     font-size: 2em;
 }
 .startPos {
-    cursor: url(assets/cur.png), auto;
+    cursor: url(assets/knight.png), auto;
 }
 .cellbg:hover {
     background: url(assets/knight.png);
@@ -109,7 +109,6 @@ body {
 }   
 .guide {
     background-color: var(--color1);
-    /* flex:1; */
     min-height: 200px;
     width:100%;
     text-align: center;
@@ -129,7 +128,6 @@ to {
     -webkit-transform: scale(1.2);
     transform: scale(1.2);
 }}
-/* , .hvr-pulse-grow:focus, .hvr-pulse-grow:active */
 .hint{
 -webkit-animation-name: hint;
 animation-name: hint;
