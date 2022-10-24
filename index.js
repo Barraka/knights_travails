@@ -91,12 +91,11 @@ calculate.addEventListener('click',runCalculate);
 function startPos() {
     //Remove existing content
     displayBoard();
-    let imgKnight = document.querySelector('.imgKnight');
-    if(imgKnight)imgKnight.remove();
-    let cell = document.querySelectorAll('.cell');
-    
+    // let imgKnight = document.querySelector('.imgKnight');
+    // if(imgKnight)imgKnight.remove();
+    let cell = document.querySelectorAll('.cell');    
     cell.forEach(x=>{
-        x.classList.remove('knight', 'destination', 'destinationFinal');
+        // x.classList.remove('knight', 'destination', 'destinationFinal');
         x.classList.add('cellbg');
     });
     let guide = document.querySelector('.guide');
@@ -110,8 +109,11 @@ function placeKnight(e) {
         target.classList.add('knight');
         let cell = document.querySelectorAll('.cell');
         cell.forEach(x=>{
-            x.classList.remove('cellbg')
-            x.classList.add('destination');
+            if(x!==target) {
+                x.classList.remove('cellbg')
+                x.classList.add('destination');
+            }
+            
         });
     }
     else if(target.classList.contains('destination')) {
@@ -184,7 +186,10 @@ function runCalculate() {
             else cellStep.classList.add('tempLast');
             step++;
             setTimeout(()=>{
-                if(last)cellStep.classList.add('target');
+                if(last) {
+                    cellStep.classList.add('target');
+                    cellStep.textContent='';
+                }
                 else cellStep.classList.add('highlight');
                 if(last) {
                     let guide = document.querySelector('.guide');
