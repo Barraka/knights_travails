@@ -1,6 +1,7 @@
 import './styles.css';
 import knightPNG from './assets/knight.png';
 
+let solutionFound = false;
 function makeBoard(size=8) {
     let board=[];
     for(let i=0; i<size; i++) {
@@ -77,6 +78,7 @@ function displayBoard() {
 function startPos() {
     //Remove existing content
     displayBoard();
+    solutionFound = false;
     let cell = document.querySelectorAll('.cell');    
     cell.forEach(x=>{
         x.classList.add('cellbg');
@@ -85,6 +87,7 @@ function startPos() {
     guide.textContent='Place the knight somewhere on the board...';
 }
 function placeKnight(e) {
+    if(solutionFound)return;
     let target=e.target;
     if(target.classList.contains('cellbg')) {
         let guide = document.querySelector('.guide');
@@ -137,6 +140,7 @@ function runCalculate() {
     let intervalLong=1500;
     let newPosX=0;
     let newPosY=0;
+    solutionFound = true;
     //Place knight at initial position
     newPosX=solution[0][1]*curHeight;
     newPosY=solution[0][0]*curHeight;
